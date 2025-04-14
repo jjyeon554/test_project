@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🔍 통합검색</title>
+  <style>
+    body {
+      background-color: #fff;
+      color: #000;
+      font-family: 'Arial', sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      color: #000;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 400px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: black;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      cursor: pointer;
+    }
+    .result {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .result img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+    .error {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 통합검색</h1>
+
+  <form method="POST">
+    <div class="search-box">
+      <input type="text" name="query" placeholder="검색어 입력" value="{{ query }}">
+      <button type="submit" name="action" value="search">검색</button>
+      <button type="submit" name="action" value="translate">번역</button>
+      <button type="submit" name="action" value="qrcode">QR 생성</button>
+      <select name="lang">
+        <option value="ko">한국어</option>
+        <option value="en">영어</option>
+        <option value="ja">일본어</option>
+        <option value="zh-cn">중국어</option>
+      </select>
+    </div>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% for result in results %}
+      <div class="result">
+        <input type="checkbox" name="selected_urls" value="{{ result.link }}">
+        <img src="{{ result.thumbnail }}">
+        <div>
+          <strong>{{ result.title }}</strong><br>
+          <a href="{{ result.link }}" target="_blank">{{ result.link }}</a><br>
+          <span>{{ result.source }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </form>
+</body>
+</html>

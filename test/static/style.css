@@ -1,0 +1,38 @@
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+input[type="text"], select, button {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.result-card {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.result-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.translated, .qr {
+    margin: 20px;
+}
